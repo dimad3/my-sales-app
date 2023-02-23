@@ -35,11 +35,28 @@ export class CategoriesComponent implements OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name', 'description'];
 
+  // property which will define whether the form should be displayed or not
+  showForm: boolean = false;
+
+
   // To call the api that is in the CategoryService, we must inject the CategoryService class
   constructor(private categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
+    this.refreshData();
+  }
+
+  onNewCategoryClick() {
+    this.showForm = true;
+  }
+
+  onBackForm() {
+    this.showForm = false;
+    this.refreshData();
+  }
+
+  refreshData() {
     // Call the getAll method. In the callback of this method, subscribe is executed, and the
     // data is returned to the `categories` variable.
     // With the `categories` variable, you can assign the data source to the Mat Table,

@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ICategory } from '../ICategory.dto';
 
 @Component({
   selector: 'category-form',
@@ -8,6 +7,8 @@ import { ICategory } from '../ICategory.dto';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent {
+@Output() newBackEvent = new EventEmitter();
+
   /**
  * Creates a new `FormGroup` instance.
  *
@@ -26,7 +27,11 @@ export class FormComponent {
     description: new FormControl(''),
   });
 
-  onSubmit(){
+  onSubmit() {
     console.log('Submit: ', this.categoryForm.value)
+  }
+
+  onBack() {
+    this.newBackEvent.emit();
   }
 }

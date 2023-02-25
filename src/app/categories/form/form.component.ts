@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Category } from '../category.dto';
 
 @Component({
   selector: 'category-form',
@@ -8,8 +9,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class FormComponent {
 @Output() newBackEvent = new EventEmitter();
+@Output() newSaveEvent = new EventEmitter<Category>();
 
-  /**
+/**
  * Creates a new `FormGroup` instance.
  *
  * @param controls A collection of child controls. The key for each child is the name
@@ -24,11 +26,13 @@ export class FormComponent {
   categoryForm = new FormGroup({
     id: new FormControl(''),
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    description: new FormControl(''),
+    description: new FormControl('')
   });
 
   onSubmit() {
-    console.log('Submit: ', this.categoryForm.value)
+    const category: Category = this.categoryForm.value as unknown as Category;
+    console.log('onSubmit in form-component.ts: ', category)
+    this.newSaveEvent.emit(category);
   }
 
   onBack() {

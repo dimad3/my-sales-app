@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { CategoryService } from './category.service';
-import { ICategory } from './ICategory.dto';
+import { Category } from './category.dto';
 
 @Component({
   selector: 'app-categories',
@@ -26,11 +26,11 @@ export class CategoriesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   // Container for MatSortables to manage the sort state and provide default sort parameters.
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<ICategory>;
+  @ViewChild(MatTable) table!: MatTable<Category>;
 
   // ! = definite assertrion - we are telling TypeScript that the dataSource variable will be instantiated
   // at some point, and TypeScript doesn’t have to worry about it.
-  dataSource!: MatTableDataSource<ICategory>;
+  dataSource!: MatTableDataSource<Category>;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name', 'description'];
@@ -69,5 +69,20 @@ export class CategoriesComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
       }
     )
+  }
+
+  onSave(category: Category): void {
+    console.log('onSave in categories-component.ts: ', category)
+    // subscribe() - https://javascript.plainenglish.io/angular-observables-for-complete-beginners-8dff19b37e97
+    this.categoryService.save(category).subscribe(categorySaved => {
+      console.log('Categories-component.ts says -> cat saved:', categorySaved);
+      this.showForm = false;
+      this.refreshData();
+    })
+    // let cat = this.categoryService.save(category);
+    // console.log('Categories-component.ts says -> cat saved:', cat);
+    // this.showForm = false;
+    // this.refreshData();
+
   }
 }

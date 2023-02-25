@@ -1,4 +1,6 @@
 <mat-card-content>
+  <!-- Ngsubmit- calls local angular component to do something useful like form validation
+  BEFORE postback to browser url/server -->
   <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()" novalidate>
     <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10">
       <mat-form-field xFlex="20%">
@@ -11,6 +13,7 @@
         <input matInput placeholder="Description" formControlName="description">
       </mat-form-field>
     </div>
+
     <button mat-raised-button color="primary" type="submit" [disabled]="!categoryForm.valid">Save</button>
   </form>
 

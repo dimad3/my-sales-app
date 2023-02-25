@@ -87,9 +87,20 @@ export class CategoriesComponent implements OnInit {
     })
   }
 
-  onEditCategoryClick(category: Category){
+  onEditCategoryClick(category: Category) {
     console.log('Categories-component.ts says -> cat to be edited:', category)
     this.category = category;
     this.showForm = true;
   }
+
+  onDeleteCategoryClick(category: Category) {
+    console.log('Categories-component.ts says -> cat to be deleted:', category);
+    if (confirm(`Do you want to delete "${category.name}"?`)) {
+      this.categoryService.delete(category.id).subscribe(() => {
+        // console.log('Categories-component.ts says -> cat deleted:', categoryDeleted);
+        this.refreshData();
+      })
+    }
+  }
+
 }

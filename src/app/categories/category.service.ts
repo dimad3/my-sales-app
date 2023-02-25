@@ -15,39 +15,59 @@ export class CategoryService {
   }
 
   getAll(): Observable<Category[]> {
-    // get() method fetches data from a server, it takes two arguments:
-    // the endpoint URL from which to fetch, and an options object that is used to configure the request
-    // The asynchronous method sends an HTTP request, and returns an Observable
-    // that emits the requested data when the response is received
+    /**
+     * Constructs a `GET` request that interprets the body as JSON and returns
+     * the response body in a given type.
+     *
+     * @param url     The endpoint URL.
+     * @param options The HTTP options to send with the request.
+     *
+     * @return An `Observable` of the `HttpResponse`, with a response body in the requested type.
+     */
     return this.http.get<Category[]>(environment.api + 'categories');
   }
 
-  save(category: Category): Observable<Category>{
-    if (category.id) {
+  save(category: Category): Observable<Category> {
+    if (category.id === 0) {
       /**
-       * Constructs a `PUT` request that interprets the body as an instance of the requested type
-       * and returns an observable of the requested type.
+       * Constructs a `POST` request that interprets the body as JSON
+       * and returns an observable of the response.
        *
        * @param url The endpoint URL.
-       * @param body The resources to add/update.
+       * @param body The content to replace with.
        * @param options HTTP options
        *
-       * @return An `Observable` of the requested type.
+       * @return  An `Observable` of the `HttpResponse` for the request, with a response body in the
+       * requested type.
        */
-      return this.http.put<Category>(environment.api + 'categories/' + category.id, category);
+      return this.http.post<Category>(environment.api + 'categories/', category);
     }
 
     /**
-     * Constructs a `POST` request that interprets the body as JSON
-     * and returns an observable of the response.
+     * Constructs a `PUT` request that interprets the body as an instance of the requested type
+     * and returns an observable of the requested type.
      *
      * @param url The endpoint URL.
-     * @param body The content to replace with.
+     * @param body The resources to add/update.
      * @param options HTTP options
      *
-     * @return  An `Observable` of the `HttpResponse` for the request, with a response body in the
-     * requested type.
+     * @return An `Observable` of the requested type.
      */
-    return this.http.post<Category>(environment.api + 'categories/' + category.id, category);
+    return this.http.put<Category>(environment.api + 'categories/' + category.id, category);
   }
+
+  delete(id: number): Observable<Category[]> {
+    /**
+     * Constructs a DELETE request that interprets the body as JSON and returns
+     * the response in a given type.
+     *
+     * @param url     The endpoint URL.
+     * @param options The HTTP options to send with the request.
+     *
+     * @return An `Observable` of the `HttpResponse`, with response body in the requested type.
+     */
+    const categoryDeleted = this.http.delete<Category[]>(environment.api + 'categories/' + id);
+    return categoryDeleted;
+  }
+
 }

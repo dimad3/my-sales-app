@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Category } from '../category.dto';
 
@@ -8,26 +8,56 @@ import { Category } from '../category.dto';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent {
-@Output() newBackEvent = new EventEmitter();
-@Output() newSaveEvent = new EventEmitter<Category>();
+  @Output() newBackEvent = new EventEmitter();
+  @Output() newSaveEvent = new EventEmitter<Category>();
 
-/**
- * Creates a new `FormGroup` instance.
- *
- * @param controls A collection of child controls. The key for each child is the name
- * under which it is registered.
- *
- * @param validatorOrOpts A synchronous validator function, or an array of such functions,
- * or an `AbstractControlOptions` object that contains validation functions and a validation trigger.
- *
- * @param asyncValidator A single async validator or array of async validator functions
- *
- */
+  /**
+   * Creates a new `FormGroup` instance.
+   *
+   * @param controls A collection of child controls. The key for each child is the name
+   * under which it is registered.
+   *
+   * @param validatorOrOpts A synchronous validator function, or an array of such functions,
+   * or an `AbstractControlOptions` object that contains validation functions and a validation trigger.
+   *
+   * @param asyncValidator A single async validator or array of async validator functions
+   *
+   */
   categoryForm = new FormGroup({
-    id: new FormControl(''),
+    id: new FormControl(0),
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     description: new FormControl('')
   });
+
+  @Input() set categoryChild(category: Category) {
+    /**
+     * Sets the value of the `FormGroup`. It accepts an object that matches
+     * the structure of the group, with control names as keys.
+     *
+     * @usageNotes
+     * ### Set the complete value for the form group
+     *
+     * ```
+     * const form = new FormGroup({
+     *   first: new FormControl(),
+     *   last: new FormControl()
+     * });
+     *
+     * console.log(form.value);   // {first: null, last: null}
+     *
+     * form.setValue({first: 'Nancy', last: 'Drew'});
+     * console.log(form.value);   // {first: 'Nancy', last: 'Drew'}
+     * ```
+     *
+     * @throws When strict checks fail, such as setting the value of a control
+     * that doesn't exist or if you exclude a value of a control that does exist.
+     *
+     * @param value The new value for the control that matches the structure of the group.
+     * @param options Configuration options that determine how the control propagates changes
+     * and emits events after the value changes.
+    */
+    this.categoryForm.setValue(category);
+  }
 
   onSubmit() {
     const category: Category = this.categoryForm.value as unknown as Category;

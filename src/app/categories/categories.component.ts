@@ -33,11 +33,12 @@ export class CategoriesComponent implements OnInit {
   dataSource!: MatTableDataSource<Category>;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name', 'description'];
+  displayedColumns = ['id', 'name', 'description', 'actions'];
 
   // property which will define whether the form should be displayed or not
   showForm: boolean = false;
 
+  category!: Category;
 
   // To call the api that is in the CategoryService, we must inject the CategoryService class
   constructor(private categoryService: CategoryService) {
@@ -48,6 +49,11 @@ export class CategoriesComponent implements OnInit {
   }
 
   onNewCategoryClick() {
+    this.category = {
+      id: 0,
+      name: '',
+      description: ''
+    }
     this.showForm = true;
   }
 
@@ -79,10 +85,11 @@ export class CategoriesComponent implements OnInit {
       this.showForm = false;
       this.refreshData();
     })
-    // let cat = this.categoryService.save(category);
-    // console.log('Categories-component.ts says -> cat saved:', cat);
-    // this.showForm = false;
-    // this.refreshData();
+  }
 
+  onEditCategoryClick(category: Category){
+    console.log('Categories-component.ts says -> cat to be edited:', category)
+    this.category = category;
+    this.showForm = true;
   }
 }

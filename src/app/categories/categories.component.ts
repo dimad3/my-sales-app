@@ -40,6 +40,8 @@ export class CategoriesComponent implements OnInit {
 
   category!: Category;
 
+  showLoading: Boolean = false;
+
   // To call the api that is in the CategoryService, we must inject the CategoryService class
   constructor(private categoryService: CategoryService) {
   }
@@ -63,6 +65,9 @@ export class CategoriesComponent implements OnInit {
   }
 
   refreshData() {
+    // The refreshData method starts by setting this.showLoading=true, so loading will be shown on the screen
+    this.showLoading = true;
+
     // Call the getAll method. In the callback of this method, subscribe is executed, and the
     // data is returned to the `categories` variable.
     // With the `categories` variable, you can assign the data source to the Mat Table,
@@ -70,9 +75,12 @@ export class CategoriesComponent implements OnInit {
     this.categoryService.getAll().subscribe(
       categories => {
         this.dataSource = new MatTableDataSource(categories);
+        // commented because dataSource is set at template (p.126 - 127)
         this.table.dataSource = this.dataSource;
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+        // Hide loading after querying the backend and getting the categories data
+        this.showLoading = false;
       }
     )
   }

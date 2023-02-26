@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Category } from '../category.dto';
 
 @Component({
@@ -10,24 +10,6 @@ import { Category } from '../category.dto';
 export class FormComponent {
   @Output() newBackEvent = new EventEmitter();
   @Output() newSaveEvent = new EventEmitter<Category>();
-
-  /**
-   * Creates a new `FormGroup` instance.
-   *
-   * @param controls A collection of child controls. The key for each child is the name
-   * under which it is registered.
-   *
-   * @param validatorOrOpts A synchronous validator function, or an array of such functions,
-   * or an `AbstractControlOptions` object that contains validation functions and a validation trigger.
-   *
-   * @param asyncValidator A single async validator or array of async validator functions
-   *
-   */
-  categoryForm = new FormGroup({
-    id: new FormControl(0),
-    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    description: new FormControl('')
-  });
 
   @Input() set categoryChild(category: Category) {
     /**
@@ -58,6 +40,22 @@ export class FormComponent {
     */
     this.categoryForm.setValue(category);
   }
+
+  categoryForm = this.fb.group({
+    id: [0],
+    name: ['', [Validators.required, Validators.minLength(3)]],
+    description: ['']
+  });
+
+  /**
+  * Creates an `AbstractControl` from a user-specified configuration.
+  *
+  * The `FormBuilder` provides syntactic sugar that shortens creating instances of a
+  * `FormControl`, `FormGroup`, or `FormArray`. It reduces the amount of boilerplate needed to
+  * build complex forms.
+  * @see [Reactive Forms Guide](guide/reactive-forms)
+  */
+  constructor(private fb: FormBuilder) { }
 
   onSubmit() {
     const category: Category = this.categoryForm.value as unknown as Category;

@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { CategoryService } from './category.service';
 import { Category } from './category.dto';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-categories',
@@ -64,51 +65,56 @@ export class CategoriesComponent implements OnInit {
     this.refreshData();
   }
 
-  refreshData() {
+  async refreshData() {
     // The refreshData method starts by setting this.showLoading=true, so loading will be shown on the screen
     this.showLoading = true;
 
-    // Call the getAll method. In the callback of this method, subscribe is executed, and the
-    // data is returned to the `categories` variable.
-    // With the `categories` variable, you can assign the data source to the Mat Table,
-    // and configure the paginator and the source, linking them to the DataSource
-    this.categoryService.getAll().subscribe(
-      categories => {
-        this.dataSource = new MatTableDataSource(categories);
-        // commented because dataSource is set at template (p.126 - 127)
-        this.table.dataSource = this.dataSource;
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-        // Hide loading after querying the backend and getting the categories data
-        this.showLoading = false;
-      }
-    )
+    try {
+      // await lastValueFrom....
+
+      // The lastValueForm means: Converts an observable to a promise by subscribing to the
+      // observable, waiting for it to complete, and resolving the returned promise with the last
+      // value from the observed stream.
+      const categories: Category[] = await lastValueFrom(this.categoryService.getAll());
+      this.dataSource = new MatTableDataSource(categories);
+      this.table.dataSource = this.dataSource;  // commented because dataSource is set at template (p.126 - 127)
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    } catch (error) {
+      // dispatch erros....
+      console.log('opsss!', error)
+    } finally {
+      // do this after lastValueFrom or error
+      // Hide loading after querying the backend and getting the categories data
+      this.showLoading = false;
+    }
+
   }
 
-  onSave(category: Category): void {
-    console.log('onSave in categories-component.ts: ', category)
+onSave(category: Category): void {
+  console.log('onSave in categories-component.ts: ', category)
     // subscribe() - https://javascript.plainenglish.io/angular-observables-for-complete-beginners-8dff19b37e97
     this.categoryService.save(category).subscribe(categorySaved => {
-      console.log('Categories-component.ts says -> cat saved:', categorySaved);
-      this.showForm = false;
+    console.log('Categories-component.ts says -> cat saved:', categorySaved);
+    this.showForm = false;
+    this.refreshData();
+  })
+}
+
+onEditCategoryClick(category: Category) {
+  console.log('Categories-component.ts says -> cat to be edited:', category)
+  this.category = category;
+  this.showForm = true;
+}
+
+onDeleteCategoryClick(category: Category) {
+  console.log('Categories-component.ts says -> cat to be deleted:', category);
+  if (confirm(`Do you want to delete "${category.name}"?`)) {
+    this.categoryService.delete(category.id).subscribe(() => {
+      // console.log('Categories-component.ts says -> cat deleted:', categoryDeleted);
       this.refreshData();
     })
   }
-
-  onEditCategoryClick(category: Category) {
-    console.log('Categories-component.ts says -> cat to be edited:', category)
-    this.category = category;
-    this.showForm = true;
-  }
-
-  onDeleteCategoryClick(category: Category) {
-    console.log('Categories-component.ts says -> cat to be deleted:', category);
-    if (confirm(`Do you want to delete "${category.name}"?`)) {
-      this.categoryService.delete(category.id).subscribe(() => {
-        // console.log('Categories-component.ts says -> cat deleted:', categoryDeleted);
-        this.refreshData();
-      })
-    }
-  }
+}
 
 }

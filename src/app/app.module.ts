@@ -28,6 +28,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FlexModule } from '@angular/flex-layout';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoadingBarComponent } from './loading-bar.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { LoadingBarComponent } from './loading-bar.component';
     MatInputModule,
     FlexModule,
     MatProgressSpinnerModule,
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

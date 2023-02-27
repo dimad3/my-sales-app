@@ -3,13 +3,13 @@
   BEFORE postback to browser url/server -->
   <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()" novalidate>
     <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10">
-      <mat-form-field xFlex="20%">
+      <mat-form-field xFlex="30%">
         <input matInput placeholder="Name" formControlName="name">
         <mat-error *ngIf="categoryForm.get('name')?.hasError('required')">Name is required</mat-error>
         <mat-error *ngIf="categoryForm.get('name')?.hasError('minlength')">Name must contain at least 3
           characters</mat-error>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field fxFlex="70%">
         <input matInput placeholder="Description" formControlName="description">
       </mat-form-field>
     </div>

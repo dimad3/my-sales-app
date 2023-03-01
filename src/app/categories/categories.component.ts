@@ -39,6 +39,8 @@ export class CategoriesComponent implements OnInit {
   // property which will define whether the form should be displayed or not
   showForm: boolean = false;
 
+  // ! = definite assertrion - we are telling TypeScript that the dataSource variable will be instantiated
+  // at some point, and TypeScript doesn’t have to worry about it.
   category!: Category;
 
   showLoading: Boolean = false;

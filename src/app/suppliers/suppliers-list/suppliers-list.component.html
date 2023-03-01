@@ -8,8 +8,25 @@
   That means Angular will run Change Detector for that component in the next cycle.
   3) It unsubscribes from the observable when the component gets destroyed. -->
 <!-- <mat-card-content *ngIf="supplierObservable | async; else loading"> -->
-<mat-card-content *ngIf="supplierObservable">
-  Found {{ suppliers.length }} suppliers
+<mat-card-content *ngIf="supplierObservable | async">
+  <strong>Found {{ suppliers.length }} suppliers</strong>
+  <!-- https://www.angularjswiki.com/flexlayout/basics/#fxlayout
+  - row wrap, means that the components below it will be inline, and broken when the space runs out
+  - fxLayoutGap has a 10px grid value which will add a gap between components -->
+  <div fxLayout="row wrap" fxLayoutGap="10px grid">
+    <div *ngFor="let supplier of suppliers">
+      <!-- routerLink - when applied to an element in a template, makes that element
+      a link that initiates navigation to a route.
+      Navigation opens one or more routed components in one or more <router-outlet> locations on the page -->
+      <mat-card class="blueOver" [routerLink]="['/suppliers/show', supplier.id]">
+        <mat-card-content>
+          <strong>{{ supplier.contactName }}</strong>
+          <br>
+          {{ supplier.companyName }}
+          </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
 </mat-card-content>
 
 <!-- With <ng-template>, you can define template content that is only being rendered by Angular
@@ -18,5 +35,3 @@ allowing you to have full control over how and when the content is displayed -->
 <!-- <ng-template #loading>
   <app-loading-bar [visible]="true"></app-loading-bar>
 </ng-template> -->
-
-<div *ngFor="let supplier of suppliers">{{ supplier.companyName }}</div>

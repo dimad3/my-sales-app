@@ -9,3 +9,10 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+/* other styles */
+
+.blueOver:hover {
+  background-color: aliceblue;
+  cursor: pointer;
+  }

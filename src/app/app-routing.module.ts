@@ -31,6 +31,7 @@ const routes: Routes = [
       loaded, and the router-outlet of this component will load the SuppliersListComponent component.
       */
       { path: '', component: SuppliersListComponent },
+      { path: 'show/:id', component: SuppliersListComponent },
     ]
   },
 ];

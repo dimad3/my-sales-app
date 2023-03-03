@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CategoriesComponent } from './categories/categories.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SuppliersListComponent } from './suppliers/suppliers-list/suppliers-list.component';
+import { SuppliersShowComponent } from './suppliers/suppliers-show/suppliers-show.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 
 /**
@@ -12,7 +13,6 @@ import { SuppliersComponent } from './suppliers/suppliers.component';
  */
 const routes: Routes = [
   { path: 'categories', component: CategoriesComponent },
-  { path: '', component: DashboardComponent },
   /**
   * The path to match against. Cannot be used together with a custom `matcher` function.
   * A URL string that uses router matching notation.
@@ -31,9 +31,11 @@ const routes: Routes = [
       loaded, and the router-outlet of this component will load the SuppliersListComponent component.
       */
       { path: '', component: SuppliersListComponent },
-      { path: 'show/:id', component: SuppliersListComponent },
+      { path: 'show/:id', component: SuppliersShowComponent },
     ]
   },
+  { path: '', component: DashboardComponent },
+
 ];
 
 @NgModule({

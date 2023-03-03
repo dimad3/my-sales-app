@@ -8,7 +8,7 @@
   That means Angular will run Change Detector for that component in the next cycle.
   3) It unsubscribes from the observable when the component gets destroyed. -->
 <!-- <mat-card-content *ngIf="supplierObservable | async; else loading"> -->
-<mat-card-content *ngIf="supplierObservable | async">
+<mat-card-content *ngIf="suppliersObservable | async">
   <strong>Found {{ suppliers.length }} suppliers</strong>
   <!-- https://www.angularjswiki.com/flexlayout/basics/#fxlayout
   - row wrap, means that the components below it will be inline, and broken when the space runs out
@@ -18,13 +18,15 @@
       <!-- routerLink - when applied to an element in a template, makes that element
       a link that initiates navigation to a route.
       Navigation opens one or more routed components in one or more <router-outlet> locations on the page -->
-      <mat-card class="blueOver" [routerLink]="['/suppliers/show', supplier.id]">
-        <mat-card-content>
-          <strong>{{ supplier.contactName }}</strong>
-          <br>
-          {{ supplier.companyName }}
+      <a [routerLink]="['/suppliers/show', supplier.id]" style="text-decoration: none;">
+        <mat-card class="blueOver">
+          <mat-card-content>
+            <strong>{{ supplier.contactName }}</strong>
+            <br>
+            {{ supplier.companyName }}
           </mat-card-content>
-      </mat-card>
+        </mat-card>
+      </a>
     </div>
   </div>
 </mat-card-content>

@@ -24,7 +24,7 @@ export class SuppliersListComponent implements OnInit {
   */
   async ngOnInit(): Promise<void> {
     this.suppliersObservable = this.supplierService.getAll();
-    console.log('this.supplierObservable log:', this.suppliersObservable);
+    console.log('this.suppliersObservable log:', this.suppliersObservable);
 
     /*
     An async function can contain an await expression, that pauses the execution of the async function

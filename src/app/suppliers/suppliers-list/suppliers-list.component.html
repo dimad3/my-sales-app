@@ -1,3 +1,7 @@
+<mat-card-title>
+  Suppliers
+</mat-card-title>
+
 <mat-card-subtitle>
   Listing all Suppliers:
 </mat-card-subtitle>
@@ -7,7 +11,7 @@
   2) Whenever a new value is emitted, it marks the component to be checked.
   That means Angular will run Change Detector for that component in the next cycle.
   3) It unsubscribes from the observable when the component gets destroyed. -->
-<!-- <mat-card-content *ngIf="supplierObservable | async; else loading"> -->
+<!-- <mat-card-content *ngIf="suppliersObservable | async; else loading"> -->
 <mat-card-content *ngIf="suppliersObservable | async">
   <strong>Found {{ suppliers.length }} suppliers</strong>
   <!-- https://www.angularjswiki.com/flexlayout/basics/#fxlayout

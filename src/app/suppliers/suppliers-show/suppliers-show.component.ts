@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, lastValueFrom } from 'rxjs';
 import { ISupplier } from '../isupplier.dto';
@@ -10,7 +10,7 @@ import { SupplierService } from '../supplier.service';
   styles: [
   ]
 })
-export class SuppliersShowComponent {
+export class SuppliersShowComponent implements OnInit {
   // ! = definite assertrion - we are telling TypeScript that the dataSource variable will be instantiated
   // at some point, and TypeScript doesn’t have to worry about it.
   supplier!: ISupplier;
@@ -53,4 +53,10 @@ export class SuppliersShowComponent {
     }
   }
 
+
+  onEditSupplierClick(supplier: ISupplier) {
+    console.log('SuppliersShowComponent says -> supplier to be edited:', supplier)
+    // this.category = category;
+    // this.showForm = true;
+  }
 }

@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { ISupplier } from '../isupplier.dto';
 
 @Component({
@@ -12,8 +11,8 @@ import { ISupplier } from '../isupplier.dto';
 export class SuppliersFormComponent implements OnInit {
   @Input()
   supplier!: ISupplier;
-  @Input()
-  supplierObservable!: Observable<ISupplier>;
+
+
   @Output() newSaveEvent = new EventEmitter<ISupplier>();
   supplierForm!: FormGroup;
 

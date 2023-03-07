@@ -31,8 +31,8 @@ export class SuppliersShowComponent implements OnInit {
     this.route.params.subscribe(params => {
       // we need to say that if params['id'] is null, 0 should be used
       this.id = (params['id'] || 0)
-      console.log('params log:', params) //log the entire params object
-      console.log("params['id'] log:", params['id']) //log the value of id
+      // console.log('params log:', params) //log the entire params object
+      // console.log("params['id'] log:", params['id']) //log the value of id
     });
 
     if (this.id) {
@@ -51,12 +51,5 @@ export class SuppliersShowComponent implements OnInit {
       console.log('this.supplier log:', this.supplier);
       // throw new Error('Method not implemented.');
     }
-  }
-
-
-  onEditSupplierClick(supplier: ISupplier) {
-    console.log('SuppliersShowComponent says -> supplier to be edited:', supplier)
-    // this.category = category;
-    // this.showForm = true;
   }
 }

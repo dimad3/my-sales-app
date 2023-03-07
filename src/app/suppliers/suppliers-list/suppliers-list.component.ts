@@ -24,7 +24,6 @@ export class SuppliersListComponent implements OnInit {
   */
   async ngOnInit(): Promise<void> {
     this.suppliersObservable = this.supplierService.getAll();
-    console.log('this.suppliersObservable log:', this.suppliersObservable);
 
     /*
     An async function can contain an await expression, that pauses the execution of the async function
@@ -35,7 +34,7 @@ export class SuppliersListComponent implements OnInit {
     // observable, waiting for it to complete, and resolving the returned promise with the last
     // value from the observed stream. (https://rxjs.dev/api/index/function/lastValueFrom)
     this.suppliers = await lastValueFrom(this.suppliersObservable);
-    console.log('this.suppliers log:', this.suppliers);
+    // console.log('this.suppliers log:', this.suppliers);
     // throw new Error('Method not implemented.');
   }
 

@@ -22,7 +22,7 @@ export class SupplierService {
      * @return An `Observable` of the `HttpResponse`, with a response body in the requested type.
      */
     const SUPPLIERS = this.http.get<ISupplier[]>(environment.api + 'suppliers');
-    console.log('SupplierService getAll() log:', SUPPLIERS);
+    // console.log('SupplierService getAll() log:', SUPPLIERS);
     return SUPPLIERS;
   }
 
@@ -37,8 +37,21 @@ export class SupplierService {
      * @return An `Observable` of the `HttpResponse`, with a response body in the requested type.
      */
     const SUPPLIER = this.http.get<ISupplier>(environment.api + 'suppliers/' + id);
-    console.log('SupplierService getById() log:', SUPPLIER);
+    // console.log('SupplierService getById() log:', SUPPLIER);
     return SUPPLIER;
   }
 
+  save(supplier: ISupplier): Observable<ISupplier> {
+    /**
+     * Constructs a `PUT` request that interprets the body as an `ArrayBuffer` and returns the
+     * response as an `ArrayBuffer`.
+     *
+     * @param url The endpoint URL.
+     * @param body The resources to add/update.
+     * @param options HTTP options
+     *
+     * @return An `Observable` of the response, with the response body as an `ArrayBuffer`.
+     */
+    return this.http.put<ISupplier>(environment.api + 'suppliers/' + supplier.id, supplier);
+  }
 }

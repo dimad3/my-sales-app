@@ -12,7 +12,6 @@ export class SuppliersFormComponent implements OnInit {
   @Input()
   supplier!: ISupplier;
 
-
   @Output() newSaveEvent = new EventEmitter<ISupplier>();
   supplierForm!: FormGroup;
 
@@ -43,13 +42,17 @@ export class SuppliersFormComponent implements OnInit {
         phone: [this.supplier.address.phone],
       }),
     });
-    console.log('ngOnInit() -> this.supplier log:', this.supplier);
+    // console.log('ngOnInit() -> this.supplier log:', this.supplier);
     // throw new Error('Method not implemented.');
   }
 
-  onSubmit() {
+  onSupplierFormSubmit() {
     const supplier_edited: ISupplier = this.supplierForm.value as unknown as ISupplier;
-    console.log('onSubmit -> supplier_edited log: ', supplier_edited)
+    console.log('onSupplierFormSubmit -> sent data supplierForm.value: ', supplier_edited)
+    /**
+     * Emits an event containing a given value.
+     * @param value The value to emit.
+     */
     this.newSaveEvent.emit(supplier_edited);
   }
 

@@ -1,7 +1,7 @@
 <mat-card-subtitle>Basic data:</mat-card-subtitle>
 <!-- <pre>{{ supplier | json}}</pre>
 <pre>{{ supplierObservable | async | json}}</pre> -->
-<form [formGroup]="supplierForm" (submit)="onSubmit()" novalidate>
+<form [formGroup]="supplierForm" (submit)="onSupplierFormSubmit()" novalidate>
 
   <div fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutWrap fxLayoutGap="10">
 
@@ -82,9 +82,8 @@
   </div>
 
   <mat-card-actions>
-    <button mat-raised-button color="primary" type="submit" [disabled]="supplierForm.invalid">
-      Save
-    </button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="
+      supplierForm.invalid">Save</button>
   </mat-card-actions>
 
 </form>

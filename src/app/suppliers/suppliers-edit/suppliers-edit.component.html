@@ -1,19 +1,19 @@
 <mat-card-title>Edit Supplier:</mat-card-title>
-<div *ngIf="supplierObservable | async">
-  <mat-card-subtitle>Supplier id: {{ supplier.id }}</mat-card-subtitle>
-
-  <!-- <pre>{{ supplier | json}}</pre> -->
-  <!-- async pipe is a pipe that essentially does these three tasks:
+<!-- async pipe is a pipe that essentially does these three tasks:
     1) It subscribes to an observable or a promise and returns the last emitted value.
     2) Whenever a new value is emitted, it marks the component to be checked.
     That means Angular will run Change Detector for that component in the next cycle.
     3) It unsubscribes from the observable when the component gets destroyed. -->
+<div *ngIf="supplierObservable | async">
+  <mat-card-subtitle>Supplier id: {{ supplier.id }}</mat-card-subtitle>
+
   <mat-card-content>
-    <app-suppliers-form [supplier]="supplier"></app-suppliers-form>
+    <!-- "onSave($event)" is not the same as "onSave(supplier)" -->
+    <app-suppliers-form [supplier]="supplier" (newSaveEvent)="onSave($event)"></app-suppliers-form>
   </mat-card-content>
 
   <!-- <mat-card-actions> adds padding appropriate for the action buttons at the bottom of a card -->
   <mat-card-actions>
-    <button mat-button [routerLink]="['/suppliers/show/', supplier?.id]">Back</button>
+    <button mat-button [routerLink]="['/suppliers/show/', supplier.id]">Back</button>
   </mat-card-actions>
 </div>

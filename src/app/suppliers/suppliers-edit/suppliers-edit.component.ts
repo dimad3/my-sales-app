@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom, Observable } from 'rxjs';
 import { ISupplier } from '../isupplier.dto';
 import { SupplierService } from '../supplier.service';
@@ -20,6 +20,7 @@ export class SuppliersEditComponent implements OnInit {
   constructor(
     private supplierService: SupplierService,
     private route: ActivatedRoute,
+    private router: Router,
   ) { }
 
   /*
@@ -31,8 +32,8 @@ export class SuppliersEditComponent implements OnInit {
     this.route.params.subscribe(params => {
       // we need to say that if params['id'] is null, 0 should be used
       this.id = (params['id'] || 0)
-      console.log('params log:', params) //log the entire params object
-      console.log("params['id'] log:", params['id']) //log the value of id
+      // console.log('params log:', params) //log the entire params object
+      // console.log("params['id'] log:", params['id']) //log the value of id
     });
 
     if (this.id) {
@@ -48,8 +49,30 @@ export class SuppliersEditComponent implements OnInit {
       // observable, waiting for it to complete, and resolving the returned promise with the last
       // value from the observed stream. (https://rxjs.dev/api/index/function/lastValueFrom)
       this.supplier = await lastValueFrom(this.supplierObservable);
-      console.log('this.supplier log:', this.supplier);
       // throw new Error('Method not implemented.');
     }
+  }
+
+  /**
+  * When an async function is called, it returns a Promise.
+  * When the async function returns a value, the Promise will be resolved with the returned value.
+  * When the async function throws an exception or some value, the Promise will be rejected with the thrown value.
+  * @param supplier - object of type Supplier, which is precisely the object passed on by the form
+  */
+  async onSave(supplier: ISupplier) {
+    // update the this.supplierObservable property
+    this.supplierObservable = this.supplierService.save(supplier);
+    /*
+    An async function can contain an await expression, that pauses the execution of the async function
+    and waits for the passed Promise's resolution,
+    and then resumes the async function's execution and returns the resolved value.
+    */
+    // The lastValueForm means: Converts an observable to a promise by subscribing to the
+    // observable, waiting for it to complete, and resolving the returned promise with the last
+    // value from the observed stream. (https://rxjs.dev/api/index/function/lastValueFrom)
+    this.supplier = await lastValueFrom(this.supplierObservable);
+    // After making the save, we use the router to navigate to the url /suppliers/show/id, returning
+    // to the screen where Supplier is displayed
+    this.router.navigate(['/suppliers/show/', supplier.id]);
   }
 }

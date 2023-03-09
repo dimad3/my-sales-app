@@ -3,8 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { CategoriesComponent } from './categories/categories.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SuppliersDeleteComponent } from './suppliers/suppliers-delete/suppliers-delete.component';
-import { SuppliersEditComponent } from './suppliers/suppliers-edit/suppliers-edit.component';
+import { SuppliersAddEditComponent } from './suppliers/suppliers-add-edit/suppliers-add-edit.component';
 import { SuppliersListComponent } from './suppliers/suppliers-list/suppliers-list.component';
+import { SuppliersNewComponent } from './suppliers/suppliers-new/suppliers-new.component';
 import { SuppliersShowComponent } from './suppliers/suppliers-show/suppliers-show.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 
@@ -34,9 +35,9 @@ const routes: Routes = [
       */
       { path: '', component: SuppliersListComponent },
       { path: 'show/:id', component: SuppliersShowComponent },
-      { path: 'edit/:id', component: SuppliersEditComponent },
+      { path: 'edit/:id', component: SuppliersAddEditComponent },
       { path: 'delete/:id', component: SuppliersDeleteComponent },
-
+      { path: 'new', component: SuppliersAddEditComponent },
     ]
   },
   { path: '', component: DashboardComponent },

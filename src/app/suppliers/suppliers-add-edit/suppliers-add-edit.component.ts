@@ -5,12 +5,12 @@ import { ISupplier } from '../isupplier.dto';
 import { SupplierService } from '../supplier.service';
 
 @Component({
-  selector: 'app-suppliers-edit',
-  templateUrl: './suppliers-edit.component.html',
+  selector: 'app-suppliers-add-edit',
+  templateUrl: './suppliers-add-edit.component.html',
   styles: [
   ]
 })
-export class SuppliersEditComponent implements OnInit {
+export class SuppliersAddEditComponent implements OnInit {
   // ! = definite assertrion - we are telling TypeScript that the dataSource variable will be instantiated
   // at some point, and TypeScript doesn’t have to worry about it.
   supplier!: ISupplier;

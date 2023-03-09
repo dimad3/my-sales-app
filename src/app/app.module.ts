@@ -31,8 +31,7 @@ import { LoadingBarComponent } from './loading-bar.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { SuppliersListComponent } from './suppliers/suppliers-list/suppliers-list.component';
-import { SuppliersEditComponent } from './suppliers/suppliers-edit/suppliers-edit.component';
-import { SuppliersNewComponent } from './suppliers/suppliers-new/suppliers-new.component';
+import { SuppliersAddEditComponent } from './suppliers/suppliers-add-edit/suppliers-add-edit.component';
 import { SuppliersFormComponent } from './suppliers/suppliers-form/suppliers-form.component';
 import { SuppliersDeleteComponent } from './suppliers/suppliers-delete/suppliers-delete.component';
 import { SuppliersShowComponent } from './suppliers/suppliers-show/suppliers-show.component';
@@ -48,8 +47,7 @@ import { SuppliersShowComponent } from './suppliers/suppliers-show/suppliers-sho
     LoadingBarComponent,
     SuppliersComponent,
     SuppliersListComponent,
-    SuppliersEditComponent,
-    SuppliersNewComponent,
+    SuppliersAddEditComponent,
     SuppliersFormComponent,
     SuppliersDeleteComponent,
     SuppliersShowComponent

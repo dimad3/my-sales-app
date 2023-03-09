@@ -31,7 +31,7 @@ export class SuppliersEditComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.route.params.subscribe(params => {
       // we need to say that if params['id'] is null, 0 should be used
-      this.id = (params['id'] || 0)
+      this.id = (params['id'] || 0);
       // console.log('params log:', params) //log the entire params object
       // console.log("params['id'] log:", params['id']) //log the value of id
     });

@@ -54,4 +54,18 @@ export class SupplierService {
      */
     return this.http.put<ISupplier>(environment.api + 'suppliers/' + supplier.id, supplier);
   }
+
+  delete(id?: Number): Observable<ISupplier> {
+    /**
+     * Constructs a `DELETE` request that interprets the body as an `ArrayBuffer`
+     *  and returns the response as an `ArrayBuffer`.
+     *
+     * @param url     The endpoint URL.
+     * @param options The HTTP options to send with the request.
+     *
+     * @return  An `Observable` of the response body as an `ArrayBuffer`.
+     */
+    return this.http.delete<ISupplier>(environment.api + 'suppliers/' + id);
+  }
+
 }

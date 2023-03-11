@@ -9,7 +9,7 @@
   2) Whenever a new value is emitted, it marks the component to be checked.
   That means Angular will run Change Detector for that component in the next cycle.
   3) It unsubscribes from the observable when the component gets destroyed. -->
-  <div *ngIf="supplierObservable | async">
+  <div *ngIf="supplierObservable | async; else loading">
     <mat-card-content>
 
       <!-- The use of “?” is necessary to avoid possible null value errors. -->
@@ -26,5 +26,11 @@
       <button mat-button color="primary" [routerLink]="['/suppliers/show', supplier.id]">No</button>
     </mat-card-actions>
   </div>
-
 </div>
+
+<!-- With <ng-template>, you can define template content that is only being rendered by Angular
+  when you, whether directly or indirectly, specifically instruct it to do so,
+  allowing you to have full control over how and when the content is displayed -->
+  <ng-template #loading>
+    <app-loading-bar [visibleChild]="true"></app-loading-bar>
+  </ng-template>

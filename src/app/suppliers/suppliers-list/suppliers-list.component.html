@@ -11,8 +11,8 @@
   2) Whenever a new value is emitted, it marks the component to be checked.
   That means Angular will run Change Detector for that component in the next cycle.
   3) It unsubscribes from the observable when the component gets destroyed. -->
-<!-- <mat-card-content *ngIf="suppliersObservable | async; else loading"> -->
-<mat-card-content *ngIf="suppliersObservable | async">
+<!-- https://angular.io/api/common/NgIf -->
+<mat-card-content *ngIf="suppliersObservable | async; else loading">
   <strong>Found {{ suppliers.length }} suppliers</strong>
   <!-- https://www.angularjswiki.com/flexlayout/basics/#fxlayout
   - row wrap, means that the components below it will be inline, and broken when the space runs out
@@ -41,8 +41,8 @@
 </mat-card-content>
 
 <!-- With <ng-template>, you can define template content that is only being rendered by Angular
-when you, whether directly or indirectly, specifically instruct it to do so,
-allowing you to have full control over how and when the content is displayed -->
-<!-- <ng-template #loading>
-  <app-loading-bar [visible]="true"></app-loading-bar>
-</ng-template> -->
+  when you, whether directly or indirectly, specifically instruct it to do so,
+  allowing you to have full control over how and when the content is displayed -->
+<ng-template #loading>
+  <app-loading-bar [visibleChild]="true"></app-loading-bar>
+</ng-template>

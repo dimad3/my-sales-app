@@ -47,8 +47,6 @@ const routes: Routes = [
       { path: '', component: ProductsListComponent },
     ]
   },
-  // { path: '', component: ProductsListComponent },
-
 ];
 
 @NgModule({

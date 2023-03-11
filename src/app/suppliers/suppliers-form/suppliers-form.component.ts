@@ -28,32 +28,49 @@ export class SuppliersFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.supplierForm = this.fb.group({
-      id: [this.supplier.id],
-      companyName: [this.supplier.companyName, [Validators.required, Validators.minLength(3)]],
-      contactName: [this.supplier.contactName, [Validators.required, Validators.minLength(3)]],
-      contactTitle: [this.supplier.contactTitle],
-      address: this.fb.group({
-        street: [this.supplier.address.street],
-        city: [this.supplier.address.city],
-        region: [this.supplier.address.region],
-        postalCode: [this.supplier.address.postalCode],
-        country: [this.supplier.address.country],
-        phone: [this.supplier.address.phone],
-      }),
-    });
-    // console.log('ngOnInit() -> this.supplier log:', this.supplier);
+    console.log('ngOnInit() -> this.supplier log:', this.supplier);
+    if (this.supplier) {
+      this.supplierForm = this.fb.group({
+        id: [this.supplier.id],
+        companyName: [this.supplier.companyName, [Validators.required, Validators.minLength(3)]],
+        contactName: [this.supplier.contactName, [Validators.required, Validators.minLength(3)]],
+        contactTitle: [this.supplier.contactTitle],
+        address: this.fb.group({
+          street: [this.supplier.address.street],
+          city: [this.supplier.address.city],
+          region: [this.supplier.address.region],
+          postalCode: [this.supplier.address.postalCode],
+          country: [this.supplier.address.country],
+          phone: [this.supplier.address.phone],
+        }),
+      });
+    } else {
+      this.supplierForm = this.fb.group({
+        id: [null],
+        companyName: [null, [Validators.required, Validators.minLength(3)]],
+        contactName: [null, [Validators.required, Validators.minLength(3)]],
+        contactTitle: [null],
+        address: this.fb.group({
+          street: [null],
+          city: [null],
+          region: [null],
+          postalCode: [null],
+          country: [null],
+          phone: [null],
+        }),
+      });
+    }
     // throw new Error('Method not implemented.');
   }
 
   onSupplierFormSubmit() {
-    const supplier_edited: ISupplier = this.supplierForm.value as unknown as ISupplier;
-    console.log('onSupplierFormSubmit -> sent data supplierForm.value: ', supplier_edited)
+    const supplier_form_value: ISupplier = this.supplierForm.value as unknown as ISupplier;
+    console.log('onSupplierFormSubmit -> supplierForm.value: ', supplier_form_value)
     /**
      * Emits an event containing a given value.
      * @param value The value to emit.
      */
-    this.newSaveEvent.emit(supplier_edited);
+    this.newSaveEvent.emit(supplier_form_value);
   }
 
 }

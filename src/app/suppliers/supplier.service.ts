@@ -42,17 +42,22 @@ export class SupplierService {
   }
 
   save(supplier: ISupplier): Observable<ISupplier> {
-    /**
-     * Constructs a `PUT` request that interprets the body as an `ArrayBuffer` and returns the
-     * response as an `ArrayBuffer`.
-     *
-     * @param url The endpoint URL.
-     * @param body The resources to add/update.
-     * @param options HTTP options
-     *
-     * @return An `Observable` of the response, with the response body as an `ArrayBuffer`.
-     */
-    return this.http.put<ISupplier>(environment.api + 'suppliers/' + supplier.id, supplier);
+    console.log('save(supplier) supplier-parameter:', supplier);
+    if (supplier.id) {
+      /**
+       * Constructs a `PUT` request that interprets the body as an `ArrayBuffer` and returns the
+       * response as an `ArrayBuffer`.
+       *
+       * @param url The endpoint URL.
+       * @param body The resources to add/update.
+       * @param options HTTP options
+       *
+       * @return An `Observable` of the response, with the response body as an `ArrayBuffer`.
+       */
+      return this.http.put<ISupplier>(environment.api + 'suppliers/' + supplier.id, supplier);
+    }
+
+    return this.http.post<ISupplier>(environment.api + 'suppliers/', supplier);
   }
 
   delete(id?: Number): Observable<ISupplier> {

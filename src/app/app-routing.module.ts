@@ -5,7 +5,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SuppliersDeleteComponent } from './suppliers/suppliers-delete/suppliers-delete.component';
 import { SuppliersAddEditComponent } from './suppliers/suppliers-add-edit/suppliers-add-edit.component';
 import { SuppliersListComponent } from './suppliers/suppliers-list/suppliers-list.component';
-import { SuppliersNewComponent } from './suppliers/suppliers-new/suppliers-new.component';
 import { SuppliersShowComponent } from './suppliers/suppliers-show/suppliers-show.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 

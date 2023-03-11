@@ -16,7 +16,6 @@ import { CategoriesComponent } from './categories/categories.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
@@ -35,6 +34,8 @@ import { SuppliersAddEditComponent } from './suppliers/suppliers-add-edit/suppli
 import { SuppliersFormComponent } from './suppliers/suppliers-form/suppliers-form.component';
 import { SuppliersDeleteComponent } from './suppliers/suppliers-delete/suppliers-delete.component';
 import { SuppliersShowComponent } from './suppliers/suppliers-show/suppliers-show.component';
+import { ProductsComponent } from './products/products.component';
+import { ProductsListComponent } from './products/products-list/products-list.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,6 @@ import { SuppliersShowComponent } from './suppliers/suppliers-show/suppliers-sho
     HomeComponent,
     MenuComponent,
     CategoriesComponent,
-    DashboardComponent,
     FormComponent,
     LoadingBarComponent,
     SuppliersComponent,
@@ -50,7 +50,9 @@ import { SuppliersShowComponent } from './suppliers/suppliers-show/suppliers-sho
     SuppliersAddEditComponent,
     SuppliersFormComponent,
     SuppliersDeleteComponent,
-    SuppliersShowComponent
+    SuppliersShowComponent,
+    ProductsComponent,
+    ProductsListComponent,
   ],
   imports: [
     BrowserModule,

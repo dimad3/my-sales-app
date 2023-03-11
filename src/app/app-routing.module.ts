@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoriesComponent } from './categories/categories.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { SuppliersDeleteComponent } from './suppliers/suppliers-delete/suppliers-delete.component';
 import { SuppliersAddEditComponent } from './suppliers/suppliers-add-edit/suppliers-add-edit.component';
 import { SuppliersListComponent } from './suppliers/suppliers-list/suppliers-list.component';
 import { SuppliersShowComponent } from './suppliers/suppliers-show/suppliers-show.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
+import { ProductsComponent } from './products/products.component';
+import { ProductsListComponent } from './products/products-list/products-list.component';
 
 /**
  * Represents a route configuration for the Router service.
@@ -39,7 +40,14 @@ const routes: Routes = [
       { path: 'new', component: SuppliersAddEditComponent },
     ]
   },
-  { path: '', component: DashboardComponent },
+  {
+    path: '',
+    component: ProductsComponent,
+    children: [
+      { path: '', component: ProductsListComponent },
+    ]
+  },
+  // { path: '', component: ProductsListComponent },
 
 ];
 

@@ -9,8 +9,9 @@ export interface IProduct {
   id?: number;
   supplier?: ISupplier;
   category?: Category;
+  quantityPerUnit: string;
   unitPrice: number;
   unitsInStock: number;
   name: string;
-  disccounted: boolean;
+  discontinued: boolean;
 }

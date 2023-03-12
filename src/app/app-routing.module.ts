@@ -8,6 +8,7 @@ import { SuppliersShowComponent } from './suppliers/suppliers-show/suppliers-sho
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductsListComponent } from './products/products-list/products-list.component';
+import { CheckoutComponent } from './cart/checkout/checkout.component';
 
 /**
  * Represents a route configuration for the Router service.
@@ -15,13 +16,14 @@ import { ProductsListComponent } from './products/products-list/products-list.co
  * in `Route.children`.
  */
 const routes: Routes = [
-  { path: 'categories', component: CategoriesComponent },
   /**
   * The path to match against. Cannot be used together with a custom `matcher` function.
   * A URL string that uses router matching notation.
   * Can be a wild card (`**`) that matches any URL (see Usage Notes below).
   * Default is "/" (the root path).
   */
+  { path: 'categories', component: CategoriesComponent },
+  { path: 'checkout', component: CheckoutComponent },
   {
     path: 'suppliers',
     component: SuppliersComponent,

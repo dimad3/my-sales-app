@@ -1,0 +1,30 @@
+<!-- <pre>{{ cartItems | json }}</pre> -->
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Checkout</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let cartItem of cartItems">
+        {{cartItem.name}} &nbsp;&nbsp;&nbsp; {{cartItem.unitPrice | currency}}
+
+        <span class="spacer"></span>
+        <button mat-stroked-button color="primary" (click)="onAddItem(cartItem)">
+          <mat-icon>add</mat-icon>
+        </button>
+        {{cartItem.quantity}}
+        <button mat-stroked-button color="accent" (click)="onRemoveItem(cartItem)">
+          <mat-icon>remove</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+    <br />
+
+    Total: {{cartService.total | currency}}
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>Next</button>
+  </mat-card-actions>
+</mat-card>

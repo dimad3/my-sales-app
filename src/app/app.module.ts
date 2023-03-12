@@ -37,6 +37,7 @@ import { SuppliersShowComponent } from './suppliers/suppliers-show/suppliers-sho
 import { ProductsComponent } from './products/products.component';
 import { ProductsListComponent } from './products/products-list/products-list.component';
 import { MatBadgeModule} from '@angular/material/badge';
+import { CheckoutComponent } from './cart/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { MatBadgeModule} from '@angular/material/badge';
     SuppliersShowComponent,
     ProductsComponent,
     ProductsListComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,

@@ -18,7 +18,7 @@ export class CartService {
    *
    * @returns Array<ICartItem> - an array of CartItem
    */
-  private getItems(): Array<ICartItem> {
+  getItems(): Array<ICartItem> {
     /* localStorage - This Web Storage API interface provides access to a particular domain's session or local storage.
     It allows, for example, the addition, modification, or deletion of stored data items. */
 
@@ -77,13 +77,11 @@ export class CartService {
    * @returns void
    */
   public removeItem(item: ICartItem): void {
-    // let found = false;
     const items = this.getItems();
 
     items.forEach(element => {
       if (element.idProduct === item.idProduct) {
         element.quantity--;
-        // found = true;
       }
     });
 
@@ -99,6 +97,7 @@ export class CartService {
     localStorage.setItem(this.CART, JSON.stringify(newItems));
     // The quantity of products in the cart is also stored
     localStorage.setItem(this.CART_ITEMS_COUNT, newItems.length.toString());
+
   }
 
 

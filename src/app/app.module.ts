@@ -36,6 +36,7 @@ import { SuppliersDeleteComponent } from './suppliers/suppliers-delete/suppliers
 import { SuppliersShowComponent } from './suppliers/suppliers-show/suppliers-show.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductsListComponent } from './products/products-list/products-list.component';
+import { MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { ProductsListComponent } from './products/products-list/products-list.co
     FlexModule,
     MatProgressSpinnerModule,
     FlexLayoutModule,
+    MatBadgeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

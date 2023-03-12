@@ -7,9 +7,9 @@ import { ICartItem } from './icart.dto'
 export class CartService {
 
   // The basic idea of CartService is to store the shopping cart items in the browser’s localStorage.
-  // We create two constants called CART and CART_ITEMS_CUNT that will be the keys of localstorage
+  // We create two constants called CART and CART_ITEMS_COUNT that will be the keys of localstorage
   readonly CART: string = 'cart';
-  readonly CART_ITEMS_CUNT: string = 'cart_items_count';
+  readonly CART_ITEMS_COUNT: string = 'cart_items_count';
 
   constructor() { }
 
@@ -66,7 +66,7 @@ export class CartService {
      */
     localStorage.setItem(this.CART, JSON.stringify(items));
     // The quantity of products in the cart is also stored
-    localStorage.setItem(this.CART_ITEMS_CUNT, items.length.toString());
+    localStorage.setItem(this.CART_ITEMS_COUNT, items.length.toString());
   }
 
 
@@ -98,7 +98,7 @@ export class CartService {
      */
     localStorage.setItem(this.CART, JSON.stringify(newItems));
     // The quantity of products in the cart is also stored
-    localStorage.setItem(this.CART_ITEMS_CUNT, newItems.length.toString());
+    localStorage.setItem(this.CART_ITEMS_COUNT, newItems.length.toString());
   }
 
 

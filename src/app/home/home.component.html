@@ -5,13 +5,22 @@
     <!-- app-menu goes here-->
     <app-menu></app-menu>
   </mat-sidenav>
+
   <mat-sidenav-content>
     <mat-toolbar color="primary">
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
+
       <span>Sales App</span>
+      <div class="spacer"></div>
+      <button mat-icon-button [routerLink]="['/checkout']">
+        <!-- https://www.geeksforgeeks.org/matbadge-in-angular-material/ -->
+        <!-- cartService injected must be public -->
+        <mat-icon [matBadge]="cartService.itemsInCart" matBadgeOverlap="false"
+          matBadgeColor="warn">shopping_cart</mat-icon>
+      </button>
     </mat-toolbar>
 
     <!-- Add Content Here -->

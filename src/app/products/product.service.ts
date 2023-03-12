@@ -22,6 +22,9 @@ export class ProductService {
      *
      * @return An `Observable` of the `HttpResponse`, with a response body in the requested type.
      */
+    console.log(environment.api + 'products?' + searchTerm);
+    // search syntax see in API docs (fake-server -> readme.md)
+    // The API has the _expand parameter which will also bring up categories and suppliers
     return this.http.get<IProduct[]>(environment.api + 'products?_expand=category&_expand=supplier' + searchTerm);
   }
 

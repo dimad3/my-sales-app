@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { lastValueFrom, Observable } from 'rxjs';
+import { CartService } from 'src/app/cart/cart.service';
+import { ICartItem } from 'src/app/cart/icart.dto';
 import { IProduct } from '../iproduct.dto';
 import { ProductService } from '../product.service';
 
@@ -19,6 +21,7 @@ export class ProductsListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
+    private cartService: CartService,
     private fb: FormBuilder,
   ) { }
 
@@ -51,5 +54,21 @@ export class ProductsListComponent implements OnInit {
 
   onSearchSubmit(){
     this.getProducts(this.searchForm.value.searchTerm);
+  }
+
+
+  /**
+   * Add item to cart variable on browser local storage
+   * @param product - object of type IProduct
+   */
+  onAddToCart(product: IProduct): void{
+    // console.log('onAddToCart(product) -> product:', product);
+    const cartItem: ICartItem = {
+      idProduct: product.id,
+      unitPrice: product.unitPrice,
+      quantity: 1,
+      name: product.name,
+    };
+    this.cartService.addItem(cartItem);
   }
 }
